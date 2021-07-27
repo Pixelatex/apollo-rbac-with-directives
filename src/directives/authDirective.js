@@ -1,5 +1,5 @@
-import { defaultFieldResolver } from "graphql"
-import { SchemaDirectiveVisitor } from 'graphql-tools';
+import { defaultFieldResolver } from "graphql";
+import { SchemaDirectiveVisitor } from "graphql-tools";
 
 class AuthDirective extends SchemaDirectiveVisitor {
   visitObject(type) {
@@ -34,17 +34,16 @@ class AuthDirective extends SchemaDirectiveVisitor {
         }
 
         const context = args[2];
-        const { user } = context
-        if(user) {
-            if (requiredRoles.includes(user.role)) {
-                return resolve.apply(this, args);
-            } else {
-                throw new Error("user lacks permission for this action");
-            }
+        const { user } = context;
+        if (user) {
+          if (requiredRoles.includes(user.role)) {
+            return resolve.apply(this, args);
+          } else {
+            throw new Error("user lacks permission for this action");
+          }
         } else {
-            throw new Error("no user found");
+          throw new Error("no user found");
         }
-       
       };
     });
   }

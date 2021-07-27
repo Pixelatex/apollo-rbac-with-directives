@@ -1,9 +1,9 @@
-import { RESTDataSource } from "apollo-datasource-rest"
+import { RESTDataSource } from "apollo-datasource-rest";
 
 class PokemonDatasource extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://pokeapi.co/api/v2/';
+    this.baseURL = "https://pokeapi.co/api/v2/";
   }
 
   async getAll(key) {
@@ -12,4 +12,4 @@ class PokemonDatasource extends RESTDataSource {
   }
 }
 
-export default PokemonDatasource
+export default PokemonDatasource;
