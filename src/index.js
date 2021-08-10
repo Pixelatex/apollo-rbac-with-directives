@@ -1,29 +1,32 @@
-import { ApolloServer } from "apollo-server-express";
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import express from "express";
-import cors from "cors";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+const { ApolloServer } = require("apollo-server-express");
+const { makeExecutableSchema } = require("@graphql-tools/schema");
+const express = require("express");
+const cors = require("cors");
+const {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} = require("apollo-server-core");
 
 // schema parts
-import typeDefs from "./typedefs";
-import resolvers from "./resolvers";
+const resolvers = require("./resolvers.js");
+const typeDefs = require("./typedefs.js");
 
 // datasources
-import pokemonDatasource from "./datasources/pokemon";
+const pokemonDatasource = require("./datasources/pokemon.js");
 
 // directives
-import authDirective from "./directives/authDirective";
+const authDirective = require("./directives/authDirective.js");
+
+const { authDirectiveTransformer, authDirectiveTypeDefs } = authDirective();
 
 async function startServer() {
-  const schemaDirectives = {
-    auth: authDirective,
-  };
-
-  const schema = makeExecutableSchema({
-    typeDefs,
+  // Add directive typedefs to the schema
+  let schema = makeExecutableSchema({
+    typeDefs: [...typeDefs, authDirectiveTypeDefs],
     resolvers,
-    schemaDirectives,
   });
+
+  // Apply directives
+  schema = authDirectiveTransformer(schema);
 
   const server = new ApolloServer({
     schema,

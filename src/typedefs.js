@@ -1,9 +1,9 @@
-import { gql } from "apollo-server";
+const { gql } = require("apollo-server");
 
-import directives from "./utils/directives.typedefs";
-import pokemonTypes from "./services/pokeApi/types/types.typedefs";
-import pokemon from "./services/pokeApi/pokemon/pokemon.typedefs";
-import natures from "./services/pokeApi/natures/natures.typedefs";
+// const directives= require("./utils/directives.typedefs");
+const pokemonTypes = require("./services/pokeApi/types/types.typedefs");
+const pokemon = require("./services/pokeApi/pokemon/pokemon.typedefs");
+const natures = require("./services/pokeApi/natures/natures.typedefs");
 
 const root = gql`
   type Query {
@@ -14,6 +14,6 @@ const root = gql`
   }
 `;
 
-const typedefsArray = [root, directives, pokemonTypes, pokemon, natures];
+const typedefsArray = [root, pokemonTypes, pokemon, natures];
 
-export default typedefsArray;
+module.exports = typedefsArray;

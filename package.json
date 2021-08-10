@@ -7,16 +7,20 @@
   "author": "Eward Somers <eward@pixelvikings.be>",
   "license": "MIT",
   "scripts": {
-    "dev": "node -r esm src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
-    "apollo-datasource-rest": "^3.0.2",
-    "apollo-server": "^3.0.2",
-    "apollo-server-express": "^3.0.2",
+    "@graphql-tools/schema": "^8.0.3",
+    "apollo-datasource-rest": "3.1.1",
+    "apollo-server": "3.1.2",
+    "apollo-server-express": "3.1.2",
     "cors": "^2.8.5",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
-    "graphql-tools": "^7.0.5"
+    "graphql-tools": "8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

@@ -1,4 +1,4 @@
-import { RESTDataSource } from "apollo-datasource-rest";
+const { RESTDataSource } = require("apollo-datasource-rest");
 
 class PokemonDatasource extends RESTDataSource {
   constructor() {
@@ -12,4 +12,4 @@ class PokemonDatasource extends RESTDataSource {
   }
 }
 
-export default PokemonDatasource;
+module.exports = PokemonDatasource;
